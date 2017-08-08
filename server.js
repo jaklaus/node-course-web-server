@@ -2,6 +2,7 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 
+const port = process.env.PORT || 3000;
 var app = express();
 
 hbs.registerPartials(`${__dirname}/views/partials`)
@@ -54,7 +55,7 @@ app.get('/bad', (req, res) => {
     errorMessage: 'Unable to fulfill request.'
   });
 });
-
-app.listen(3000, () =>{
-  console.log('Server is working on port 3000');
+// make server port dynamic for Heroku deployment from 3000 -> port
+app.listen(port, () =>{
+  console.log(`Server is working on port ${port}`);
 });
